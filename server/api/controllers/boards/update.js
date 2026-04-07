@@ -130,6 +130,9 @@ module.exports = {
     expandTaskListsByDefault: {
       type: 'boolean',
     },
+    displayLabelPlaceholder: {
+      type: 'boolean',
+    },
     isSubscribed: {
       type: 'boolean',
     },
@@ -169,6 +172,7 @@ module.exports = {
         'alwaysDisplayCardCreator',
         'displayCardAges',
         'expandTaskListsByDefault',
+        'displayLabelPlaceholder',
       );
     }
     if (isBoardMember) {
@@ -188,6 +192,7 @@ module.exports = {
       'alwaysDisplayCardCreator',
       'displayCardAges',
       'expandTaskListsByDefault',
+      'displayLabelPlaceholder',
       'isSubscribed',
     ]);
 
