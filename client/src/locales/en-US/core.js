@@ -35,6 +35,7 @@ export default {
       allChangesWillBeAutomaticallySavedAfterConnectionRestored:
         'All changes will be automatically saved<br />after connection restored.',
       alphabetically: 'Alphabetically',
+      addCardToTop: 'Always add new cards to top of list',
       alwaysDisplayCardCreator: 'Always display card creator',
       apiKeyCreated_title: 'API Key Created',
       apiKey_title: 'API Key',

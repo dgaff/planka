@@ -67,6 +67,14 @@ const Others = React.memo(() => {
         className={styles.radio}
         onChange={handleChange}
       />
+      <Radio
+        toggle
+        name="addCardToTop"
+        checked={board.addCardToTop}
+        label={t('common.addCardToTop')}
+        className={styles.radio}
+        onChange={handleChange}
+      />
     </Segment>
   );
 });

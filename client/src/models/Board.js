@@ -34,6 +34,7 @@ export default class extends BaseModel {
     displayCardAges: attr(),
     expandTaskListsByDefault: attr(),
     displayLabelPlaceholder: attr(),
+    addCardToTop: attr(),
     context: attr(),
     view: attr(),
     search: attr(),

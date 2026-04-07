@@ -158,6 +158,11 @@ module.exports = {
       defaultsTo: false,
       columnName: 'display_label_placeholder',
     },
+    addCardToTop: {
+      type: 'boolean',
+      defaultsTo: false,
+      columnName: 'add_card_to_top',
+    },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗

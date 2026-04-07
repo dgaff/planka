@@ -50,6 +50,10 @@ const List = React.memo(({ id, index }) => {
 
   const clipboard = useSelector(selectors.selectClipboard);
   const isFavoritesActive = useSelector(selectors.selectIsFavoritesActiveForCurrentUser);
+  const addCardToTop = useSelector((state) => {
+    const board = selectors.selectCurrentBoard(state);
+    return board ? board.addCardToTop : false;
+  });
 
   const list = useSelector((state) => selectListById(state, id));
   const cardIds = useSelector((state) => selectFilteredCardIdsByListId(state, id));
@@ -109,8 +113,8 @@ const List = React.memo(({ id, index }) => {
   }, [list.isPersisted, canEdit]);
 
   const handleAddCardClick = useCallback(() => {
-    setAddCardPosition(AddCardPositions.BOTTOM);
-  }, []);
+    setAddCardPosition(addCardToTop ? AddCardPositions.TOP : AddCardPositions.BOTTOM);
+  }, [addCardToTop]);
 
   const handleAddCardClose = useCallback(() => {
     setAddCardPosition(null);
