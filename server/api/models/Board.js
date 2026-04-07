@@ -153,6 +153,11 @@ module.exports = {
       defaultsTo: false,
       columnName: 'expand_task_lists_by_default',
     },
+    displayLabelPlaceholder: {
+      type: 'boolean',
+      defaultsTo: false,
+      columnName: 'display_label_placeholder',
+    },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗

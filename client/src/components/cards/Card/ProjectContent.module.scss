@@ -67,6 +67,25 @@
     width: 1px;
   }
 
+  .labelPlaceholder {
+    background: rgba(9, 30, 66, 0.08);
+    border-radius: 3px;
+    display: inline-block;
+    font-size: 12px;
+    line-height: 20px;
+    padding: 0 6px;
+    width: 40px;
+
+    &:hover {
+      background: rgba(9, 30, 66, 0.16);
+    }
+  }
+
+  .labelsClickable {
+    cursor: pointer;
+    display: inline;
+  }
+
   .labels {
     max-width: 100%;
     overflow: hidden;

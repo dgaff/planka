@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { Icon } from 'semantic-ui-react';
+import { usePopup } from '../../../lib/popup';
 
 import selectors from '../../../selectors';
 import entryActions from '../../../entry-actions';
@@ -20,11 +21,14 @@ import StopwatchChip from '../StopwatchChip';
 import TimeAgo from '../../common/TimeAgo';
 import UserAvatar from '../../users/UserAvatar';
 import LabelChip from '../../labels/LabelChip';
+import LabelsStep from '../../labels/LabelsStep';
 import CustomFieldValueChip from '../../custom-field-values/CustomFieldValueChip';
 
 import styles from './ProjectContent.module.scss';
 
 const ProjectContent = React.memo(({ cardId }) => {
+  const LabelsPopup = usePopup(LabelsStep);
+
   const selectCardById = useMemo(() => selectors.makeSelectCardById(), []);
   const selectListById = useMemo(() => selectors.makeSelectListById(), []);
   const selectUserIdsByCardId = useMemo(() => selectors.makeSelectUserIdsByCardId(), []);
@@ -76,15 +80,22 @@ const ProjectContent = React.memo(({ cardId }) => {
     return attachment && attachment.data.thumbnailUrls.outside360;
   });
 
-  const { listName, withCreator, withAge } = useSelector((state) => {
+  const { listName, withCreator, withAge, withLabelPlaceholder } = useSelector((state) => {
     const board = selectors.selectCurrentBoard(state);
 
     return {
       listName: list.name && (board.view === BoardViews.KANBAN ? null : list.name),
       withCreator: board.alwaysDisplayCardCreator,
       withAge: board.displayCardAges,
+      withLabelPlaceholder: board.displayLabelPlaceholder,
     };
   }, shallowEqual);
+
+  const canUseLabels = useSelector((state) => {
+    if (isListArchiveOrTrash(list)) return false;
+    const boardMembership = selectors.selectCurrentUserMembershipForCurrentBoard(state);
+    return !!boardMembership && boardMembership.role === BoardMembershipRoles.EDITOR;
+  });
 
   const canEditStopwatch = useSelector((state) => {
     if (isListArchiveOrTrash(list)) {
@@ -110,6 +121,20 @@ const ProjectContent = React.memo(({ cardId }) => {
       );
     },
     [cardId, card.stopwatch, dispatch],
+  );
+
+  const handleLabelSelect = useCallback(
+    (labelId) => {
+      dispatch(entryActions.addLabelToCard(labelId, cardId));
+    },
+    [cardId, dispatch],
+  );
+
+  const handleLabelDeselect = useCallback(
+    (labelId) => {
+      dispatch(entryActions.removeLabelFromCard(labelId, cardId));
+    },
+    [cardId, dispatch],
   );
 
   const hasInformation =
@@ -154,7 +179,24 @@ const ProjectContent = React.memo(({ cardId }) => {
           <img src={coverUrl} alt="" className={styles.cover} />
         </div>
       )}
-      {labelIds.length > 0 && (
+      {canUseLabels && (labelIds.length > 0 || withLabelPlaceholder) && (
+        <LabelsPopup
+          currentIds={labelIds}
+          cardId={cardId}
+          onSelect={handleLabelSelect}
+          onDeselect={handleLabelDeselect}
+        >
+          <span className={classNames(styles.labels, !isCompact && styles.labelsFull, styles.labelsClickable)}>
+            {labelIds.map((labelId) => (
+              <span key={labelId} className={classNames(styles.attachment, styles.attachmentLeft)}>
+                <LabelChip id={labelId} size="tiny" />
+              </span>
+            ))}
+            {labelIds.length === 0 && <span className={styles.labelPlaceholder} />}
+          </span>
+        </LabelsPopup>
+      )}
+      {!canUseLabels && labelIds.length > 0 && (
         <span className={classNames(styles.labels, !isCompact && styles.labelsFull)}>
           {labelIds.map((labelId) => (
             <span key={labelId} className={classNames(styles.attachment, styles.attachmentLeft)}>

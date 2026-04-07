@@ -168,6 +168,7 @@ export default {
       description: 'Description',
       display: 'Display',
       displayCardAges: 'Display card ages',
+      displayLabelPlaceholder: 'Display label placeholder on unlabeled cards',
       dropFileToUpload: 'Drop file to upload',
       dueDate_title: 'Due Date',
       dynamicAndUnevenlySpacedLayout: 'Dynamic and unevenly spaced layout.',

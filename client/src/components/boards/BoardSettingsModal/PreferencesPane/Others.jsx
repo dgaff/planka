@@ -59,6 +59,14 @@ const Others = React.memo(() => {
         className={styles.radio}
         onChange={handleChange}
       />
+      <Radio
+        toggle
+        name="displayLabelPlaceholder"
+        checked={board.displayLabelPlaceholder}
+        label={t('common.displayLabelPlaceholder')}
+        className={styles.radio}
+        onChange={handleChange}
+      />
     </Segment>
   );
 });
