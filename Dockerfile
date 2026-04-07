@@ -8,8 +8,11 @@ WORKDIR /app
 
 COPY server .
 
-RUN npm install npm --global \
-  && npm install \
+# RUN npm install npm --global \
+#   && npm install \
+#   && npm run build \
+#   && npm prune --production
+RUN npm install \
   && npm run build \
   && npm prune --production
 
@@ -20,16 +23,20 @@ WORKDIR /app
 
 COPY client .
 
-RUN npm install npm --global \
-  && npm install --omit=dev \
+# RUN npm install npm --global \
+#   && npm install --omit=dev \
+#   && INDEX_FORMAT=ejs DISABLE_ESLINT_PLUGIN=true npm run build
+RUN npm install --omit=dev \
   && INDEX_FORMAT=ejs DISABLE_ESLINT_PLUGIN=true npm run build
 
 # Stage 3: Final image
 FROM node:22-alpine
 
+# RUN apk -U upgrade \
+#   && apk add bash python3 squid --no-cache \
+#   && npm install npm --global
 RUN apk -U upgrade \
-  && apk add bash python3 squid --no-cache \
-  && npm install npm --global
+  && apk add bash python3 squid --no-cache
 
 USER node
 WORKDIR /app
