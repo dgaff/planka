@@ -68,16 +68,19 @@
   }
 
   .labelPlaceholder {
-    background: rgba(9, 30, 66, 0.08);
+    background: transparent;
+    border: 2px dotted rgba(9, 30, 66, 0.3);
     border-radius: 3px;
+    box-sizing: border-box;
     display: inline-block;
-    font-size: 12px;
-    line-height: 20px;
-    padding: 0 6px;
-    width: 40px;
+    height: 20px;
+    margin-bottom: 6px;
+    vertical-align: top;
+    width: 80px;
 
     &:hover {
-      background: rgba(9, 30, 66, 0.16);
+      background: rgba(9, 30, 66, 0.08);
+      border-color: rgba(9, 30, 66, 0.5);
     }
   }
 
