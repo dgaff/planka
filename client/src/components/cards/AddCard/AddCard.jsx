@@ -94,6 +94,7 @@ const AddCard = React.memo(({ isOpened, className, onCreate, onClose }) => {
       switch (event.key) {
         case 'Enter':
           event.preventDefault();
+          event.stopPropagation();
           submit(isModifierKeyPressed(event));
 
           break;

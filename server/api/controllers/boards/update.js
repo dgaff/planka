@@ -180,6 +180,7 @@ module.exports = {
         'expandTaskListsByDefault',
         'displayLabelPlaceholder',
         'addCardToTop',
+        'keepOpenAfterCardCreate',
       );
     }
     if (isBoardMember) {
@@ -201,6 +202,7 @@ module.exports = {
       'expandTaskListsByDefault',
       'displayLabelPlaceholder',
       'addCardToTop',
+      'keepOpenAfterCardCreate',
       'isSubscribed',
     ]);
 
