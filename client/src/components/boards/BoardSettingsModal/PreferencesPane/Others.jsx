@@ -75,6 +75,14 @@ const Others = React.memo(() => {
         className={styles.radio}
         onChange={handleChange}
       />
+      <Radio
+        toggle
+        name="keepOpenAfterCardCreate"
+        checked={board.keepOpenAfterCardCreate}
+        label={t('common.keepOpenAfterCardCreate')}
+        className={styles.radio}
+        onChange={handleChange}
+      />
     </Segment>
   );
 });

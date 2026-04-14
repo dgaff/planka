@@ -163,6 +163,11 @@ module.exports = {
       defaultsTo: false,
       columnName: 'add_card_to_top',
     },
+    keepOpenAfterCardCreate: {
+      type: 'boolean',
+      defaultsTo: true,
+      columnName: 'keep_open_after_card_create',
+    },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗

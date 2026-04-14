@@ -26,8 +26,11 @@ const DEFAULT_DATA = {
 };
 
 const AddCard = React.memo(({ isOpened, className, onCreate, onClose }) => {
-  const { defaultCardType: defaultType, limitCardTypesToDefaultOne: limitTypesToDefaultOne } =
-    useSelector(selectors.selectCurrentBoard);
+  const {
+    defaultCardType: defaultType,
+    limitCardTypesToDefaultOne: limitTypesToDefaultOne,
+    keepOpenAfterCardCreate,
+  } = useSelector(selectors.selectCurrentBoard);
 
   const [t] = useTranslation();
   const prevDefaultType = usePrevious(defaultType);
@@ -63,13 +66,13 @@ const AddCard = React.memo(({ isOpened, className, onCreate, onClose }) => {
         type: defaultType,
       });
 
-      if (autoOpen) {
+      if (autoOpen || !keepOpenAfterCardCreate) {
         onClose();
       } else {
         focusNameField();
       }
     },
-    [onCreate, onClose, defaultType, data, setData, focusNameField, nameFieldRef],
+    [onCreate, onClose, defaultType, data, setData, focusNameField, nameFieldRef, keepOpenAfterCardCreate],
   );
 
   const handleSubmit = useCallback(() => {

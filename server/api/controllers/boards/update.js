@@ -136,6 +136,9 @@ module.exports = {
     addCardToTop: {
       type: 'boolean',
     },
+    keepOpenAfterCardCreate: {
+      type: 'boolean',
+    },
     isSubscribed: {
       type: 'boolean',
     },
