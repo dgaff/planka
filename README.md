@@ -14,6 +14,23 @@
 
 </div>
 
+## Doug's Fork
+
+I forked Planka to add the following customizations. Each of these is controlled by a board-level preference setting that can be enabled for custom behavior or disabled for standard Planka behavior.
+
+1. Always create new cards at the top of a column.
+2. Only create one card at a time. Don't open a new blank card after you press Enter.
+3. Put a label placeholder by default on a card.
+4. When you click the label placeholder, the label context menu opens rather than the edit card dialog.
+
+These are the additional preferences.
+
+<img src="assets/newpreferences.png" height="250px" alt="Label placeholder">
+
+And this is what the label placeholder looks like.
+
+<img src="assets/labelplaceholder.png" height="250px" alt="Label placeholder">
+
 ## Key Features
 
 - **Collaborative Kanban Boards:** Create projects, boards, lists, cards, and manage tasks with an intuitive drag-and-drop interface
