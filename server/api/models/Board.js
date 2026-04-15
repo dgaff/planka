@@ -168,6 +168,11 @@ module.exports = {
       defaultsTo: true,
       columnName: 'keep_open_after_card_create',
     },
+    autoCloseLabelSelectorAfterSelection: {
+      type: 'boolean',
+      defaultsTo: false,
+      columnName: 'auto_close_label_selector_after_selection',
+    },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗

@@ -36,6 +36,7 @@ export default class extends BaseModel {
     displayLabelPlaceholder: attr(),
     addCardToTop: attr(),
     keepOpenAfterCardCreate: attr(),
+    autoCloseLabelSelectorAfterSelection: attr(),
     context: attr(),
     view: attr(),
     search: attr(),

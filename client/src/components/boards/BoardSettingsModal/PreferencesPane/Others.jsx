@@ -83,6 +83,14 @@ const Others = React.memo(() => {
         className={styles.radio}
         onChange={handleChange}
       />
+      <Radio
+        toggle
+        name="autoCloseLabelSelectorAfterSelection"
+        checked={board.autoCloseLabelSelectorAfterSelection}
+        label={t('common.autoCloseLabelSelectorAfterSelection')}
+        className={styles.radio}
+        onChange={handleChange}
+      />
     </Segment>
   );
 });

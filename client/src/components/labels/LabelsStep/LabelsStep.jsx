@@ -28,8 +28,13 @@ const StepTypes = {
   EDIT: 'EDIT',
 };
 
-const LabelsStep = React.memo(({ currentIds, cardId, title, onSelect, onDeselect, onBack }) => {
+const LabelsStep = React.memo(({ currentIds, cardId, title, onSelect, onDeselect, onBack, onClose }) => {
   const labels = useSelector(selectors.selectLabelsForCurrentBoard);
+
+  const autoCloseLabelSelectorAfterSelection = useSelector((state) => {
+    const board = selectors.selectCurrentBoard(state);
+    return board && board.autoCloseLabelSelectorAfterSelection;
+  });
 
   const canAdd = useSelector((state) => {
     const boardMembership = selectors.selectCurrentUserMembershipForCurrentBoard(state);
@@ -69,6 +74,16 @@ const LabelsStep = React.memo(({ currentIds, cardId, title, onSelect, onDeselect
       dispatch(entryActions.moveLabel(draggableId, destination.index));
     },
     [dispatch],
+  );
+
+  const handleSelect = useCallback(
+    (id) => {
+      onSelect(id);
+      if (autoCloseLabelSelectorAfterSelection && onClose) {
+        onClose();
+      }
+    },
+    [onSelect, autoCloseLabelSelectorAfterSelection, onClose],
   );
 
   const handleAddClick = useCallback(() => {
@@ -150,7 +165,7 @@ const LabelsStep = React.memo(({ currentIds, cardId, title, onSelect, onDeselect
                       id={item.id}
                       index={index}
                       isActive={currentIds.includes(item.id)}
-                      onSelect={onSelect}
+                      onSelect={handleSelect}
                       onDeselect={onDeselect}
                       onEdit={handleEdit}
                     />
@@ -192,12 +207,14 @@ LabelsStep.propTypes = {
   onSelect: PropTypes.func.isRequired,
   onDeselect: PropTypes.func.isRequired,
   onBack: PropTypes.func,
+  onClose: PropTypes.func,
 };
 
 LabelsStep.defaultProps = {
   cardId: undefined,
   title: 'common.labels',
   onBack: undefined,
+  onClose: undefined,
 };
 
 export default LabelsStep;

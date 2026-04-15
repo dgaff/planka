@@ -63,6 +63,10 @@
  *                 type: boolean
  *                 description: Whether to expand task lists by default
  *                 example: false
+ *               autoCloseLabelSelectorAfterSelection:
+ *                 type: boolean
+ *                 description: Whether to auto-close the label selector after a single selection
+ *                 example: false
  *               isSubscribed:
  *                 type: boolean
  *                 description: Whether the current user is subscribed to the board
@@ -139,6 +143,9 @@ module.exports = {
     keepOpenAfterCardCreate: {
       type: 'boolean',
     },
+    autoCloseLabelSelectorAfterSelection: {
+      type: 'boolean',
+    },
     isSubscribed: {
       type: 'boolean',
     },
@@ -181,6 +188,7 @@ module.exports = {
         'displayLabelPlaceholder',
         'addCardToTop',
         'keepOpenAfterCardCreate',
+        'autoCloseLabelSelectorAfterSelection',
       );
     }
     if (isBoardMember) {
@@ -203,6 +211,7 @@ module.exports = {
       'displayLabelPlaceholder',
       'addCardToTop',
       'keepOpenAfterCardCreate',
+      'autoCloseLabelSelectorAfterSelection',
       'isSubscribed',
     ]);
 
