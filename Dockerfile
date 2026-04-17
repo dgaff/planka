@@ -8,11 +8,7 @@ WORKDIR /app
 
 COPY server .
 
-# RUN npm install npm --global \
-#   && npm install \
-#   && npm run build \
-#   && npm prune --production
-RUN npm install \
+RUN  npm install \
   && npm run build \
   && npm prune --production
 
@@ -36,6 +32,7 @@ FROM node:22-alpine
 #   && apk add bash python3 squid --no-cache \
 #   && npm install npm --global
 RUN apk -U upgrade \
+  && apk add bash python3 squid --no-cache
   && apk add bash python3 squid --no-cache
 
 USER node
