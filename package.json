@@ -1,6 +1,6 @@
 {
   "name": "planka",
-  "version": "2.1.0.doug",
+  "version": "2.1.1.doug",
   "private": true,
   "scripts": {
     "client:build": "npm run build --prefix client",
