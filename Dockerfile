@@ -33,7 +33,6 @@ FROM node:22-alpine
 #   && npm install npm --global
 RUN apk -U upgrade \
   && apk add bash python3 squid --no-cache
-  && apk add bash python3 squid --no-cache
 
 USER node
 WORKDIR /app
