@@ -8,11 +8,7 @@ WORKDIR /app
 
 COPY server .
 
-# RUN npm install npm --global \
-#   && npm install \
-#   && npm run build \
-#   && npm prune --production
-RUN npm install \
+RUN  npm install \
   && npm run build \
   && npm prune --production
 
