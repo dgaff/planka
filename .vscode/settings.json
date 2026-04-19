@@ -16,5 +16,8 @@
   },
   "[javascriptreact]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-  }
+  },
+  "cSpell.words": [
+    "genversion"
+  ]
 }
