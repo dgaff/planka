@@ -91,6 +91,14 @@ const Others = React.memo(() => {
         className={styles.radio}
         onChange={handleChange}
       />
+      <Radio
+        toggle
+        name="showAddCardButtonAtTop"
+        checked={board.showAddCardButtonAtTop}
+        label={t('common.showAddCardButtonAtTop')}
+        className={styles.radio}
+        onChange={handleChange}
+      />
     </Segment>
   );
 });

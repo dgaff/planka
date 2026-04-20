@@ -22,6 +22,7 @@ I forked Planka to add the following customizations. Each of these is controlled
 2. Only create one card at a time. Don't open a new blank card after you press Enter.
 3. Put a label placeholder by default on a card.
 4. When you click the label placeholder, the label context menu opens rather than the edit card dialog.
+5. Show a create new card button at the top of the column.
 
 These are the additional preferences.
 

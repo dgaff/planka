@@ -173,6 +173,11 @@ module.exports = {
       defaultsTo: false,
       columnName: 'auto_close_label_selector_after_selection',
     },
+    showAddCardButtonAtTop: {
+      type: 'boolean',
+      defaultsTo: false,
+      columnName: 'show_add_card_button_at_top',
+    },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗

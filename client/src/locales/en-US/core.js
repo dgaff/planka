@@ -36,6 +36,7 @@ export default {
         'All changes will be automatically saved<br />after connection restored.',
       alphabetically: 'Alphabetically',
       addCardToTop: 'Always add new cards to top of list',
+      showAddCardButtonAtTop: 'Show add card button at top of list',
       autoCloseLabelSelectorAfterSelection: 'Auto-close label selector after selecting a label',
       keepOpenAfterCardCreate: 'Keep card form open after adding a card',
       alwaysDisplayCardCreator: 'Always display card creator',

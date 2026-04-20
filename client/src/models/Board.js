@@ -37,6 +37,7 @@ export default class extends BaseModel {
     addCardToTop: attr(),
     keepOpenAfterCardCreate: attr(),
     autoCloseLabelSelectorAfterSelection: attr(),
+    showAddCardButtonAtTop: attr(),
     context: attr(),
     view: attr(),
     search: attr(),

@@ -112,6 +112,42 @@
     cursor: pointer;
   }
 
+  .headerWithBothButtons {
+    padding-right: 76px;
+  }
+
+  .headerAddButton {
+    align-items: center;
+    background: none;
+    box-shadow: none;
+    color: #798d99;
+    display: flex;
+    fill: #798d99;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    width: 32px;
+
+    &:hover {
+      background: rgba(9, 30, 66, 0.13);
+      color: #516b7a;
+      fill: #516b7a;
+    }
+  }
+
+  .headerAddButtonIcon {
+    height: 20px;
+    padding: 0.64px;
+    width: 20px;
+  }
+
+  .headerAddButtonWithEdit {
+    right: 40px;
+  }
+
   .headerButton {
     background: none;
     box-shadow: none;

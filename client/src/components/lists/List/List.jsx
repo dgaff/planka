@@ -55,6 +55,11 @@ const List = React.memo(({ id, index }) => {
     return board ? board.addCardToTop : false;
   });
 
+  const showAddCardButtonAtTop = useSelector((state) => {
+    const board = selectors.selectCurrentBoard(state);
+    return board ? board.showAddCardButtonAtTop : false;
+  });
+
   const list = useSelector((state) => selectListById(state, id));
   const cardIds = useSelector((state) => selectFilteredCardIdsByListId(state, id));
 
@@ -121,6 +126,11 @@ const List = React.memo(({ id, index }) => {
   }, []);
 
   const handleCardAdd = useCallback(() => {
+    setAddCardPosition(AddCardPositions.TOP);
+  }, []);
+
+  const handleHeaderAddCardClick = useCallback((e) => {
+    e.stopPropagation();
     setAddCardPosition(AddCardPositions.TOP);
   }, []);
 
@@ -213,7 +223,11 @@ const List = React.memo(({ id, index }) => {
                                          jsx-a11y/no-static-element-interactions */}
             <div
               {...dragHandleProps} // eslint-disable-line react/jsx-props-no-spreading
-              className={classNames(styles.header, canEdit && styles.headerEditable)}
+              className={classNames(
+                styles.header,
+                canEdit && styles.headerEditable,
+                showAddCardButtonAtTop && canAddCard && !isEditNameOpened && canEdit && styles.headerWithBothButtons,
+              )}
               onClick={handleHeaderClick}
             >
               {isEditNameOpened ? (
@@ -257,6 +271,18 @@ const List = React.memo(({ id, index }) => {
                     </ArchiveCardsPopup>
                   )
                 ))}
+              {showAddCardButtonAtTop && canAddCard && !isEditNameOpened && (
+                <Button
+                  disabled={!list.isPersisted}
+                  className={classNames(
+                    styles.headerAddButton,
+                    canEdit && styles.headerAddButtonWithEdit,
+                  )}
+                  onClick={handleHeaderAddCardClick}
+                >
+                  <PlusMathIcon className={styles.headerAddButtonIcon} />
+                </Button>
+              )}
             </div>
             <div ref={cardsWrapperRef} className={styles.cardsInnerWrapper}>
               <div className={styles.cardsOuterWrapper}>{cardsNode}</div>

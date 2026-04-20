@@ -146,6 +146,9 @@ module.exports = {
     autoCloseLabelSelectorAfterSelection: {
       type: 'boolean',
     },
+    showAddCardButtonAtTop: {
+      type: 'boolean',
+    },
     isSubscribed: {
       type: 'boolean',
     },
@@ -189,6 +192,7 @@ module.exports = {
         'addCardToTop',
         'keepOpenAfterCardCreate',
         'autoCloseLabelSelectorAfterSelection',
+        'showAddCardButtonAtTop',
       );
     }
     if (isBoardMember) {
@@ -212,6 +216,7 @@ module.exports = {
       'addCardToTop',
       'keepOpenAfterCardCreate',
       'autoCloseLabelSelectorAfterSelection',
+      'showAddCardButtonAtTop',
       'isSubscribed',
     ]);
 
