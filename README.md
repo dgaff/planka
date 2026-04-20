@@ -28,7 +28,7 @@ These are the additional preferences.
 
 <img src="assets/newpreferences.png" height="250px" alt="Label placeholder">
 
-And this is what the label placeholder looks like.
+And this is what the label placeholder and add a card button look like.
 
 <img src="assets/labelplaceholder.png" height="250px" alt="Label placeholder">
 
