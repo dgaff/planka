@@ -102,6 +102,8 @@ const TYPE_STATE_BY_TYPE = {
   [Types.CLOSED]: Types.CLOSED,
 };
 
+// TODO: modify this list if you want different colors for columns.
+
 const COLORS = [
   'berry-red',
   'pumpkin-orange',

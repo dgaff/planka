@@ -3,6 +3,7 @@
  * Licensed under the Fair Use License: https://github.com/plankanban/planka/blob/master/LICENSE.md
  */
 
+/* TODO: modify this list if you want different colors for columns. */
 export default [
   'berry-red',
   'pumpkin-orange',

@@ -24,6 +24,8 @@ I forked Planka to add the following customizations. Each of these is controlled
 4. When you click the label placeholder, the label context menu opens rather than the edit card dialog.
 5. Show a create new card button at the top of the column.
 
+I also wanted to add a bunch of custom colors for labels.
+
 These are the additional preferences.
 
 <img src="assets/newpreferences.png" height="250px" alt="Label placeholder">

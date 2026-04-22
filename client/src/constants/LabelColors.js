@@ -4,6 +4,30 @@
  */
 
 export default [
+  'slate-blue', // Doug custom
+  'charcoal', // Doug custom
+  'amber-orange', // Doug custom
+  'vivid-orange', // Doug custom
+  'ocean-blue', // Doug custom
+  'crimson-rose', // Doug custom
+  'hot-pink', // Doug custom
+  'light-pink', // Doug custom
+  'dusty-lavender', // Doug custom
+  'royal-purple', // Doug custom
+  'lime-green', // Doug custom
+  'neutral-gray', // Doug custom
+  'golden-yellow', // Doug custom
+  'medium-purple', // Doug custom
+  'sky-blue', // Doug custom
+  'coffee-brown', // Doug custom
+  'magenta-pink', // Doug custom
+  'forest-green', // Doug custom
+  'raspberry', // Doug custom
+  'salmon-coral', // Doug custom
+  'cornflower-blue', // Doug custom
+  'emerald-mint', // Doug custom
+  'mustard-gold', // Doug custom
+  'light-gray', // Doug custom
   'muddy-grey',
   'autumn-leafs',
   'morning-sky',
