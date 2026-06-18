@@ -11,5 +11,7 @@ node_modules
 pnpm-lock.yaml
 yarn.lock
 
+db_backup/*
+
 # Chart dependencies
 **/charts/*.tgz
