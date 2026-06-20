@@ -178,6 +178,7 @@ const Filters = React.memo(() => {
         <LabelsPopup
           currentIds={labelIds}
           title="common.filterByLabels"
+          disableAutoClose
           onSelect={handleLabelSelect}
           onDeselect={handleLabelDeselect}
         >

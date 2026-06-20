@@ -28,7 +28,7 @@ const StepTypes = {
   EDIT: 'EDIT',
 };
 
-const LabelsStep = React.memo(({ currentIds, cardId, title, onSelect, onDeselect, onBack, onClose }) => {
+const LabelsStep = React.memo(({ currentIds, cardId, title, disableAutoClose, onSelect, onDeselect, onBack, onClose }) => {
   const labels = useSelector(selectors.selectLabelsForCurrentBoard);
 
   const autoCloseLabelSelectorAfterSelection = useSelector((state) => {
@@ -79,11 +79,11 @@ const LabelsStep = React.memo(({ currentIds, cardId, title, onSelect, onDeselect
   const handleSelect = useCallback(
     (id) => {
       onSelect(id);
-      if (autoCloseLabelSelectorAfterSelection && onClose) {
+      if (!disableAutoClose && autoCloseLabelSelectorAfterSelection && onClose) {
         onClose();
       }
     },
-    [onSelect, autoCloseLabelSelectorAfterSelection, onClose],
+    [onSelect, disableAutoClose, autoCloseLabelSelectorAfterSelection, onClose],
   );
 
   const handleAddClick = useCallback(() => {
@@ -204,6 +204,7 @@ LabelsStep.propTypes = {
   currentIds: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   cardId: PropTypes.string,
   title: PropTypes.string,
+  disableAutoClose: PropTypes.bool,
   onSelect: PropTypes.func.isRequired,
   onDeselect: PropTypes.func.isRequired,
   onBack: PropTypes.func,
@@ -213,6 +214,7 @@ LabelsStep.propTypes = {
 LabelsStep.defaultProps = {
   cardId: undefined,
   title: 'common.labels',
+  disableAutoClose: false,
   onBack: undefined,
   onClose: undefined,
 };
