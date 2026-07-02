@@ -163,6 +163,10 @@ module.exports.routes = {
   'PATCH /api/labels/:id': 'labels/update',
   'DELETE /api/labels/:id': 'labels/delete',
 
+  'POST /api/boards/:boardId/custom-filters': 'custom-filters/create',
+  'PATCH /api/custom-filters/:id': 'custom-filters/update',
+  'DELETE /api/custom-filters/:id': 'custom-filters/delete',
+
   'POST /api/boards/:boardId/lists': 'lists/create',
   'GET /api/lists/:id': 'lists/show',
   'PATCH /api/lists/:id': 'lists/update',

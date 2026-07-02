@@ -20,6 +20,7 @@ import UserAvatar from '../../users/UserAvatar';
 import BoardMembershipsStep from '../../board-memberships/BoardMembershipsStep';
 import LabelChip from '../../labels/LabelChip';
 import LabelsStep from '../../labels/LabelsStep';
+import CustomFilters from './CustomFilters';
 
 import styles from './Filters.module.scss';
 
@@ -192,6 +193,9 @@ const Filters = React.memo(() => {
             <LabelChip id={labelId} size="small" onClick={handleLabelClick} />
           </span>
         ))}
+      </span>
+      <span className={styles.filter}>
+        <CustomFilters />
       </span>
       <span className={styles.filter}>
         <Input

@@ -29,6 +29,10 @@ module.exports = {
       boardId: boardIdOrIds,
     });
 
+    await CustomFilter.qm.delete({
+      boardId: boardIdOrIds,
+    });
+
     const lists = await List.qm.delete({
       boardId: boardIdOrIds,
     });

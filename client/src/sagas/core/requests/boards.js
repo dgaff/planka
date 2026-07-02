@@ -21,6 +21,7 @@ export function* fetchBoardByCurrentPath() {
   let projects;
   let boardMemberships;
   let labels;
+  let customFilters;
   let lists;
   let cards;
   let cardMemberships1;
@@ -69,6 +70,7 @@ export function* fetchBoardByCurrentPath() {
           projects,
           boardMemberships,
           labels,
+          customFilters,
           lists,
           cards,
           users: users2,
@@ -90,6 +92,7 @@ export function* fetchBoardByCurrentPath() {
     card,
     boardMemberships,
     labels,
+    customFilters,
     lists,
     cards,
     project: projects[0],

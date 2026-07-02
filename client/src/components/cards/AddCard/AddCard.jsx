@@ -72,7 +72,16 @@ const AddCard = React.memo(({ isOpened, className, onCreate, onClose }) => {
         focusNameField();
       }
     },
-    [onCreate, onClose, defaultType, data, setData, focusNameField, nameFieldRef, keepOpenAfterCardCreate],
+    [
+      onCreate,
+      onClose,
+      defaultType,
+      data,
+      setData,
+      focusNameField,
+      nameFieldRef,
+      keepOpenAfterCardCreate,
+    ],
   );
 
   const handleSubmit = useCallback(() => {

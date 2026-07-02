@@ -5,6 +5,7 @@
 
 const BOARD = 'BOARD';
 const LABEL = 'LABEL';
+const CUSTOM_FILTER = 'CUSTOM_FILTER';
 const LIST = 'LIST';
 const CARD = 'CARD';
 const TASK_LIST = 'TASK_LIST';
@@ -15,6 +16,7 @@ const CUSTOM_FIELD = 'CUSTOM_FIELD';
 export default {
   BOARD,
   LABEL,
+  CUSTOM_FILTER,
   LIST,
   CARD,
   TASK_LIST,

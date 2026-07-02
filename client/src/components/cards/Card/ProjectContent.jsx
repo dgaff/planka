@@ -186,7 +186,13 @@ const ProjectContent = React.memo(({ cardId }) => {
           onSelect={handleLabelSelect}
           onDeselect={handleLabelDeselect}
         >
-          <span className={classNames(styles.labels, !isCompact && styles.labelsFull, styles.labelsClickable)}>
+          <span
+            className={classNames(
+              styles.labels,
+              !isCompact && styles.labelsFull,
+              styles.labelsClickable,
+            )}
+          >
             {labelIds.map((labelId) => (
               <span key={labelId} className={classNames(styles.attachment, styles.attachmentLeft)}>
                 <LabelChip id={labelId} size="tiny" />

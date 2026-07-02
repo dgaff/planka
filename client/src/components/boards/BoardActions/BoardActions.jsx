@@ -55,7 +55,7 @@ const BoardActions = React.memo(() => {
             <BoardMemberships />
           </div>
         )}
-        <div className={styles.action}>
+        <div className={classNames(styles.action, styles.actionFilters)}>
           <Filters />
         </div>
         <div className={classNames(styles.action, styles.actionRightSide)}>

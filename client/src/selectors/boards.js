@@ -459,6 +459,42 @@ export const selectFilterLabelIdsForCurrentBoard = createSelector(
   },
 );
 
+export const selectCustomFiltersForCurrentBoard = createSelector(
+  orm,
+  (state) => selectPath(state).boardId,
+  ({ Board }, id) => {
+    if (!id) {
+      return id;
+    }
+
+    const boardModel = Board.withId(id);
+
+    if (!boardModel) {
+      return boardModel;
+    }
+
+    return boardModel.getCustomFiltersQuerySet().toRefArray();
+  },
+);
+
+export const selectActiveCustomFilterIdForCurrentBoard = createSelector(
+  orm,
+  (state) => selectPath(state).boardId,
+  ({ Board }, id) => {
+    if (!id) {
+      return id;
+    }
+
+    const boardModel = Board.withId(id);
+
+    if (!boardModel) {
+      return boardModel;
+    }
+
+    return boardModel.activeCustomFilterId;
+  },
+);
+
 export const selectIsBoardWithIdExists = createSelector(
   orm,
   (_, id) => id,
@@ -491,5 +527,7 @@ export default {
   selectActivityIdsForCurrentBoard,
   selectFilterUserIdsForCurrentBoard,
   selectFilterLabelIdsForCurrentBoard,
+  selectCustomFiltersForCurrentBoard,
+  selectActiveCustomFilterIdForCurrentBoard,
   selectIsBoardWithIdExists,
 };

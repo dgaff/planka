@@ -226,7 +226,11 @@ const List = React.memo(({ id, index }) => {
               className={classNames(
                 styles.header,
                 canEdit && styles.headerEditable,
-                showAddCardButtonAtTop && canAddCard && !isEditNameOpened && canEdit && styles.headerWithBothButtons,
+                showAddCardButtonAtTop &&
+                  canAddCard &&
+                  !isEditNameOpened &&
+                  canEdit &&
+                  styles.headerWithBothButtons,
               )}
               onClick={handleHeaderClick}
             >

@@ -63,6 +63,22 @@ export const selectNextLabelPosition = createSelector(
   },
 );
 
+export const selectNextCustomFilterPosition = createSelector(
+  orm,
+  (_, boardId) => boardId,
+  (_, __, index) => index,
+  (_, __, ___, excludedId) => excludedId,
+  ({ Board }, boardId, index, excludedId) => {
+    const boardModel = Board.withId(boardId);
+
+    if (!boardModel) {
+      return boardModel;
+    }
+
+    return nextPosition(boardModel.getCustomFiltersQuerySet().toRefArray(), index, excludedId);
+  },
+);
+
 export const selectNextListPosition = createSelector(
   orm,
   (_, boardId) => boardId,
@@ -202,6 +218,7 @@ export const selectNextCustomFieldPositionInGroup = createSelector(
 export default {
   selectNextBoardPosition,
   selectNextLabelPosition,
+  selectNextCustomFilterPosition,
   selectNextListPosition,
   selectNextCardPosition,
   selectNextTaskListPosition,

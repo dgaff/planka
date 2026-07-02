@@ -56,6 +56,9 @@ export default class extends BaseModel {
     isAllActivitiesFetched: attr({
       getDefault: () => null,
     }),
+    activeCustomFilterId: attr({
+      getDefault: () => null,
+    }),
     projectId: fk({
       to: 'Project',
       as: 'project',
@@ -259,6 +262,45 @@ export default class extends BaseModel {
         Board.withId(payload.boardId).filterLabels.remove(payload.id);
 
         break;
+      case ActionTypes.CUSTOM_FILTER_IN_BOARD_ACTIVATE:
+        Board.withId(payload.boardId).update({
+          activeCustomFilterId: payload.id,
+        });
+
+        break;
+      case ActionTypes.CUSTOM_FILTER_IN_BOARD_DEACTIVATE:
+        Board.withId(payload.boardId).update({
+          activeCustomFilterId: null,
+        });
+
+        break;
+      case ActionTypes.CUSTOM_FILTER_DELETE: {
+        const boardModel = Board.all()
+          .toModelArray()
+          .find((model) => model.activeCustomFilterId === payload.id);
+
+        if (boardModel) {
+          boardModel.update({
+            activeCustomFilterId: null,
+          });
+        }
+
+        break;
+      }
+      case ActionTypes.CUSTOM_FILTER_DELETE__SUCCESS:
+      case ActionTypes.CUSTOM_FILTER_DELETE_HANDLE: {
+        const boardModel = Board.all()
+          .toModelArray()
+          .find((model) => model.activeCustomFilterId === payload.customFilter.id);
+
+        if (boardModel) {
+          boardModel.update({
+            activeCustomFilterId: null,
+          });
+        }
+
+        break;
+      }
       case ActionTypes.ACTIVITIES_IN_BOARD_FETCH:
         Board.withId(payload.boardId).update({
           isActivitiesFetching: true,
@@ -285,6 +327,10 @@ export default class extends BaseModel {
 
   getLabelsQuerySet() {
     return this.labels.orderBy(['position', 'id.length', 'id']);
+  }
+
+  getCustomFiltersQuerySet() {
+    return this.customFilters.orderBy(['position', 'id.length', 'id']);
   }
 
   getListsQuerySet() {
@@ -394,6 +440,24 @@ export default class extends BaseModel {
       });
     }
 
+    if (this.activeCustomFilterId) {
+      const activeCustomFilterModel = this.customFilters
+        .toModelArray()
+        .find((customFilterModel) => customFilterModel.id === this.activeCustomFilterId);
+
+      const requiredLabelIds =
+        activeCustomFilterModel && activeCustomFilterModel.labelIds
+          ? activeCustomFilterModel.labelIds
+          : [];
+
+      if (requiredLabelIds.length > 0) {
+        cardModels = cardModels.filter((cardModel) => {
+          const cardLabelIds = cardModel.labels.toRefArray().map((label) => label.id);
+          return requiredLabelIds.every((labelId) => cardLabelIds.includes(labelId));
+        });
+      }
+    }
+
     return cardModels;
   }
 
@@ -462,6 +526,10 @@ export default class extends BaseModel {
 
     this.labels.toModelArray().forEach((labelModel) => {
       labelModel.deleteWithRelated();
+    });
+
+    this.customFilters.toModelArray().forEach((customFilterModel) => {
+      customFilterModel.delete();
     });
 
     this.deleteListsWithRelated(soft);

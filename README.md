@@ -4,15 +4,13 @@
 
 ## Doug's Fork
 
-I forked Planka to add the following customizations. Each of these is controlled by a board-level preference setting that can be enabled for custom behavior or disabled for standard Planka behavior.
+I forked Planka to add several customizations. Each of the following is controlled by a board-level preference setting that can be enabled for custom behavior or disabled for standard Planka behavior.
 
 1. Always create new cards at the top of a column.
 2. Only create one card at a time. Don't open a new blank card after you press Enter.
 3. Put a label placeholder by default on a card.
 4. When you click the label placeholder, the label context menu opens rather than the edit card dialog.
 5. Show a create new card button at the top of the column.
-
-I also wanted to add a bunch of custom colors for labels.
 
 These are the additional preferences.
 
@@ -21,6 +19,10 @@ These are the additional preferences.
 And this is what the label placeholder and add a card button look like.
 
 <img src="assets/labelplaceholder.png" height="250px" alt="Label placeholder">
+
+I also added a bunch of custom colors for labels, and I added the ability to create custom filter buttons (for the purpose of grouping labels for bulk filtering).
+
+<img src="assets/customlabelfilters.png" height="250px" alt="Custom label filters">
 
 ## Key Features
 

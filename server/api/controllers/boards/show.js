@@ -54,6 +54,7 @@
  *                     - projects
  *                     - boardMemberships
  *                     - labels
+ *                     - customFilters
  *                     - lists
  *                     - cards
  *                     - cardMemberships
@@ -85,6 +86,11 @@
  *                       description: Related labels
  *                       items:
  *                         $ref: '#/components/schemas/Label'
+ *                     customFilters:
+ *                       type: array
+ *                       description: Related custom filters
+ *                       items:
+ *                         $ref: '#/components/schemas/CustomFilter'
  *                     lists:
  *                       type: array
  *                       description: Related lists
@@ -204,6 +210,7 @@ module.exports = {
 
     const boardMemberships = await BoardMembership.qm.getByBoardId(board.id);
     const labels = await Label.qm.getByBoardId(board.id);
+    const customFilters = await CustomFilter.qm.getByBoardId(board.id);
     const lists = await List.qm.getByBoardId(board.id);
 
     const finiteLists = lists.filter((list) => sails.helpers.lists.isFinite(list));
@@ -263,6 +270,7 @@ module.exports = {
       included: {
         boardMemberships,
         labels,
+        customFilters,
         lists,
         cards,
         cardMemberships,

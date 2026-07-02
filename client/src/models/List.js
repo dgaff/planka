@@ -387,6 +387,24 @@ export default class extends BaseModel {
       });
     }
 
+    if (this.board.activeCustomFilterId) {
+      const activeCustomFilterModel = this.board.customFilters
+        .toModelArray()
+        .find((customFilterModel) => customFilterModel.id === this.board.activeCustomFilterId);
+
+      const requiredLabelIds =
+        activeCustomFilterModel && activeCustomFilterModel.labelIds
+          ? activeCustomFilterModel.labelIds
+          : [];
+
+      if (requiredLabelIds.length > 0) {
+        cardModels = cardModels.filter((cardModel) => {
+          const cardLabelIds = cardModel.labels.toRefArray().map((label) => label.id);
+          return requiredLabelIds.every((labelId) => cardLabelIds.includes(labelId));
+        });
+      }
+    }
+
     return cardModels;
   }
 

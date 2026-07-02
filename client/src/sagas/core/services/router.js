@@ -78,6 +78,8 @@ export function* handleLocationChange() {
   let projects;
   let boardMemberships;
   let labels;
+  let customFilters1;
+  let customFilters2;
   let lists;
   let cards;
   let cardMemberships1;
@@ -126,6 +128,7 @@ export function* handleLocationChange() {
                 projects,
                 boardMemberships,
                 labels,
+                customFilters: customFilters1,
                 lists,
                 cards,
                 users: users1,
@@ -187,6 +190,7 @@ export function* handleLocationChange() {
                     projects,
                     boardMemberships,
                     labels,
+                    customFilters: customFilters2,
                     lists,
                     cards,
                     users: users2,
@@ -240,6 +244,7 @@ export function* handleLocationChange() {
       projects,
       boardMemberships,
       labels,
+      mergeRecords(customFilters1, customFilters2),
       lists,
       mergeRecords(card && [card], cards),
       mergeRecords(cardMemberships1, cardMemberships2),

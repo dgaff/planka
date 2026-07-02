@@ -153,6 +153,18 @@ const createSocketEventsChannel = () =>
       emit(entryActions.handleLabelDelete(item));
     };
 
+    const handleCustomFilterCreate = ({ item }) => {
+      emit(entryActions.handleCustomFilterCreate(item));
+    };
+
+    const handleCustomFilterUpdate = ({ item }) => {
+      emit(entryActions.handleCustomFilterUpdate(item));
+    };
+
+    const handleCustomFilterDelete = ({ item }) => {
+      emit(entryActions.handleCustomFilterDelete(item));
+    };
+
     const handleCardsUpdate = api.makeHandleCardsUpdate(
       ({ items, included: { activities } = {} }) => {
         emit(entryActions.handleCardsUpdate(items, activities));
@@ -342,6 +354,10 @@ const createSocketEventsChannel = () =>
     socket.on('labelUpdate', handleLabelUpdate);
     socket.on('labelDelete', handleLabelDelete);
 
+    socket.on('customFilterCreate', handleCustomFilterCreate);
+    socket.on('customFilterUpdate', handleCustomFilterUpdate);
+    socket.on('customFilterDelete', handleCustomFilterDelete);
+
     socket.on('cardsUpdate', handleCardsUpdate);
     socket.on('cardCreate', handleCardCreate);
     socket.on('cardUpdate', handleCardUpdate);
@@ -438,6 +454,10 @@ const createSocketEventsChannel = () =>
       socket.off('labelCreate', handleLabelCreate);
       socket.off('labelUpdate', handleLabelUpdate);
       socket.off('labelDelete', handleLabelDelete);
+
+      socket.off('customFilterCreate', handleCustomFilterCreate);
+      socket.off('customFilterUpdate', handleCustomFilterUpdate);
+      socket.off('customFilterDelete', handleCustomFilterDelete);
 
       socket.off('cardsUpdate', handleCardsUpdate);
       socket.off('cardCreate', handleCardCreate);
