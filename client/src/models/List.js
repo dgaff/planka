@@ -400,7 +400,7 @@ export default class extends BaseModel {
       if (requiredLabelIds.length > 0) {
         cardModels = cardModels.filter((cardModel) => {
           const cardLabelIds = cardModel.labels.toRefArray().map((label) => label.id);
-          return requiredLabelIds.every((labelId) => cardLabelIds.includes(labelId));
+          return requiredLabelIds.some((labelId) => cardLabelIds.includes(labelId));
         });
       }
     }
