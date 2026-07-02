@@ -13,5 +13,7 @@ yarn.lock
 
 db_backup/*
 
+.recall/
+
 # Chart dependencies
 **/charts/*.tgz
