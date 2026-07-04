@@ -78,6 +78,7 @@ export const ListTypeStates = {
 
 export const ListSortFieldNames = {
   NAME: 'name',
+  LABEL: 'label',
   DUE_DATE: 'dueDate',
   CREATED_AT: 'createdAt',
 };

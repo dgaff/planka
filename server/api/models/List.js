@@ -83,6 +83,7 @@ const TypeStates = {
 
 const SortFieldNames = {
   NAME: 'name',
+  LABEL: 'label',
   DUE_DATE: 'dueDate',
   CREATED_AT: 'createdAt',
 };

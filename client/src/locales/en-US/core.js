@@ -107,6 +107,7 @@ export default {
       byCreationTime: 'By creation time',
       byDefault: 'By default',
       byDueDate: 'By due date',
+      byLabel: 'By label',
       canBeInvitedToWorkInBoards: 'Can be invited to work in boards.',
       canComment: 'Can comment',
       canCreateOwnProjectsAndBeInvitedToWorkInOthers:

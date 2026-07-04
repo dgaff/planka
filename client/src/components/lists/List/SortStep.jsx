@@ -17,6 +17,7 @@ import styles from './ActionsStep.module.scss';
 
 const Types = {
   ALPHABETICALLY: 'alphabetically',
+  BY_LABEL: 'byLabel',
   BY_DUE_DATE: 'byDueDate',
   OLDEST_FIRST: 'oldestFirst',
   NEWEST_FIRST: 'newestFirst',
@@ -25,6 +26,9 @@ const Types = {
 const DATA_BY_TYPE = {
   [Types.ALPHABETICALLY]: {
     fieldName: ListSortFieldNames.NAME,
+  },
+  [Types.BY_LABEL]: {
+    fieldName: ListSortFieldNames.LABEL,
   },
   [Types.BY_DUE_DATE]: {
     fieldName: ListSortFieldNames.DUE_DATE,
@@ -59,18 +63,22 @@ const SortStep = React.memo(({ listId, onBack, onClose }) => {
       </Popup.Header>
       <Popup.Content>
         <Menu secondary vertical className={styles.menu}>
-          {[Types.ALPHABETICALLY, Types.BY_DUE_DATE, Types.OLDEST_FIRST, Types.NEWEST_FIRST].map(
-            (type) => (
-              <Menu.Item
-                key={type}
-                value={type}
-                className={styles.menuItem}
-                onClick={handleSelectTypeClick}
-              >
-                {t(`common.${type}`)}
-              </Menu.Item>
-            ),
-          )}
+          {[
+            Types.ALPHABETICALLY,
+            Types.BY_LABEL,
+            Types.BY_DUE_DATE,
+            Types.OLDEST_FIRST,
+            Types.NEWEST_FIRST,
+          ].map((type) => (
+            <Menu.Item
+              key={type}
+              value={type}
+              className={styles.menuItem}
+              onClick={handleSelectTypeClick}
+            >
+              {t(`common.${type}`)}
+            </Menu.Item>
+          ))}
         </Menu>
       </Popup.Content>
     </>

@@ -51,6 +51,53 @@ module.exports = {
         cards.sort((card1, card2) => card1.name.localeCompare(card2.name));
 
         break;
+      case List.SortFieldNames.LABEL: {
+        // Sort by the order labels appear in the board's label list, keying each
+        // card on its highest-ranked (earliest) label. Cards without any labels
+        // are placed at the end.
+        const cardIds = cards.map((card) => card.id);
+        const cardLabels = await CardLabel.qm.getByCardIds(cardIds);
+
+        // getByBoardId returns labels ordered by position, so the array index is the rank.
+        const labels = await Label.qm.getByBoardId(inputs.board.id);
+        const rankByLabelId = new Map(labels.map((label, index) => [label.id, index]));
+
+        const sortRankByCardId = new Map();
+        cardLabels.forEach((cardLabel) => {
+          const rank = rankByLabelId.get(cardLabel.labelId);
+
+          if (rank === undefined) {
+            return;
+          }
+
+          const currentRank = sortRankByCardId.get(cardLabel.cardId);
+
+          if (currentRank === undefined || rank < currentRank) {
+            sortRankByCardId.set(cardLabel.cardId, rank);
+          }
+        });
+
+        cards.sort((card1, card2) => {
+          const rank1 = sortRankByCardId.get(card1.id);
+          const rank2 = sortRankByCardId.get(card2.id);
+
+          if (rank1 === undefined && rank2 === undefined) {
+            return 0;
+          }
+
+          if (rank1 === undefined) {
+            return 1;
+          }
+
+          if (rank2 === undefined) {
+            return -1;
+          }
+
+          return rank1 - rank2;
+        });
+
+        break;
+      }
       case List.SortFieldNames.DUE_DATE:
         cards.sort((card1, card2) => {
           if (card1.dueDate === null) {
