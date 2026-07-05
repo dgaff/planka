@@ -46,6 +46,8 @@ const getByCardId = (cardId, { beforeId } = {}) => {
   return defaultFind(criteria, { limit: LIMIT });
 };
 
+const getByCardIds = (cardIds) => Comment.find({ cardId: cardIds }).sort('id');
+
 const getOneById = (id) => Comment.findOne(id);
 
 const update = (criteria, values) => Comment.update(criteria).set(values).fetch();
@@ -117,6 +119,7 @@ module.exports = {
   createOne,
   getByIds,
   getByCardId,
+  getByCardIds,
   getOneById,
   update,
   updateOne,

@@ -40,6 +40,10 @@ export default function* boardsWatchers() {
     takeEvery(EntryActionTypes.IN_CURRENT_BOARD_SEARCH, ({ payload: { value } }) =>
       services.searchInCurrentBoard(value),
     ),
+    takeEvery(EntryActionTypes.CURRENT_BOARD_EXPORT, () => services.exportCurrentBoard()),
+    takeEvery(EntryActionTypes.BOARD_IMPORT, ({ payload: { id, file } }) =>
+      services.importBoard(id, file),
+    ),
     takeEvery(EntryActionTypes.BOARD_DELETE, ({ payload: { id } }) => services.deleteBoard(id)),
     takeEvery(EntryActionTypes.BOARD_DELETE_HANDLE, ({ payload: { board } }) =>
       services.handleBoardDelete(board),

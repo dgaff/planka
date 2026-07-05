@@ -24,6 +24,10 @@ I also added a bunch of custom colors for labels, and I added the ability to cre
 
 <img src="assets/customlabelfilters.png" height="250px" alt="Custom label filters">
 
+And I added Board Export and Board Import. Export includes the Custom Filters featured added about. Import is additive. It doesn't replace anything that's already there, including columns (lists) that already exist. NOTE: this feature is tested, but I don't use all of the board features, so it's possible I missed something.
+
+<img src="assets/board-import-export.png" width="300px" alt = "Board Import / Export">
+
 ## Key Features
 
 - **Collaborative Kanban Boards:** Create projects, boards, lists, cards, and manage tasks with an intuitive drag-and-drop interface

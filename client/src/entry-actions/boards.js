@@ -79,6 +79,19 @@ const searchInCurrentBoard = (value) => ({
   },
 });
 
+const exportCurrentBoard = () => ({
+  type: EntryActionTypes.CURRENT_BOARD_EXPORT,
+  payload: {},
+});
+
+const importIntoBoard = (id, file) => ({
+  type: EntryActionTypes.BOARD_IMPORT,
+  payload: {
+    id,
+    file,
+  },
+});
+
 const deleteBoard = (id) => ({
   type: EntryActionTypes.BOARD_DELETE,
   payload: {
@@ -104,6 +117,8 @@ export default {
   updateContextInCurrentBoard,
   updateViewInCurrentBoard,
   searchInCurrentBoard,
+  exportCurrentBoard,
+  importIntoBoard,
   deleteBoard,
   handleBoardDelete,
 };

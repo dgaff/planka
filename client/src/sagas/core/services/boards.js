@@ -218,6 +218,55 @@ export function* searchInCurrentBoard(value) {
   yield put(actions.searchInBoard(boardId, value, currentListId));
 }
 
+function downloadBlob(blob, filename) {
+  const url = window.URL.createObjectURL(blob);
+
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+
+  window.URL.revokeObjectURL(url);
+}
+
+export function* exportCurrentBoard() {
+  const { boardId } = yield select(selectors.selectPath);
+
+  if (!boardId) {
+    return;
+  }
+
+  let result;
+  try {
+    result = yield call(request, api.exportBoard, boardId);
+  } catch (error) {
+    yield put(actions.exportBoard.failure(boardId, error));
+    return;
+  }
+
+  downloadBlob(result.blob, result.filename);
+}
+
+export function* importBoard(id, file) {
+  const requestId = yield call(createLocalId);
+
+  yield put(actions.importBoard(id));
+
+  try {
+    yield call(request, api.importBoard, id, file, requestId);
+  } catch (error) {
+    yield put(actions.importBoard.failure(id, error));
+    return;
+  }
+
+  yield put(actions.importBoard.success(id));
+
+  // Re-fetch so the additively imported content shows up for the importing user.
+  yield call(fetchBoard, id);
+}
+
 export function* deleteBoard(id) {
   const currentBoard = yield select(selectors.selectCurrentBoard);
 
@@ -262,6 +311,8 @@ export default {
   updateBoardView,
   updateViewInCurrentBoard,
   searchInCurrentBoard,
+  exportCurrentBoard,
+  importBoard,
   deleteBoard,
   handleBoardDelete,
 };

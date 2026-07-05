@@ -138,6 +138,50 @@ const searchInBoard = (id, value, currentListId) => ({
   },
 });
 
+const exportBoard = (id) => ({
+  type: ActionTypes.BOARD_EXPORT,
+  payload: {
+    id,
+  },
+});
+
+exportBoard.success = (id) => ({
+  type: ActionTypes.BOARD_EXPORT__SUCCESS,
+  payload: {
+    id,
+  },
+});
+
+exportBoard.failure = (id, error) => ({
+  type: ActionTypes.BOARD_EXPORT__FAILURE,
+  payload: {
+    id,
+    error,
+  },
+});
+
+const importBoard = (id) => ({
+  type: ActionTypes.BOARD_IMPORT,
+  payload: {
+    id,
+  },
+});
+
+importBoard.success = (id) => ({
+  type: ActionTypes.BOARD_IMPORT__SUCCESS,
+  payload: {
+    id,
+  },
+});
+
+importBoard.failure = (id, error) => ({
+  type: ActionTypes.BOARD_IMPORT__FAILURE,
+  payload: {
+    id,
+    error,
+  },
+});
+
 const deleteBoard = (id) => ({
   type: ActionTypes.BOARD_DELETE,
   payload: {
@@ -175,6 +219,8 @@ export default {
   handleBoardUpdate,
   updateBoardContext,
   searchInBoard,
+  exportBoard,
+  importBoard,
   deleteBoard,
   handleBoardDelete,
 };

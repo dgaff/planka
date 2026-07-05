@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Icon, Menu } from 'semantic-ui-react';
-import { Popup } from '../../../../lib/custom-ui';
+import { FilePicker, Popup } from '../../../../lib/custom-ui';
 
 import selectors from '../../../../selectors';
 import entryActions from '../../../../entry-actions';
@@ -28,24 +28,27 @@ const StepTypes = {
 const ActionsStep = React.memo(({ onClose }) => {
   const board = useSelector(selectors.selectCurrentBoard);
 
-  const { withSubscribe, withCustomFieldGroups, withTrashEmptier } = useSelector((state) => {
-    const isManager = selectors.selectIsCurrentUserManagerForCurrentProject(state);
-    const boardMembership = selectors.selectCurrentUserMembershipForCurrentBoard(state);
+  const { withSubscribe, withCustomFieldGroups, withTrashEmptier, withExport, withImport } =
+    useSelector((state) => {
+      const isManager = selectors.selectIsCurrentUserManagerForCurrentProject(state);
+      const boardMembership = selectors.selectCurrentUserMembershipForCurrentBoard(state);
 
-    let isMember = false;
-    let isEditor = false;
+      let isMember = false;
+      let isEditor = false;
 
-    if (boardMembership) {
-      isMember = true;
-      isEditor = boardMembership.role === BoardMembershipRoles.EDITOR;
-    }
+      if (boardMembership) {
+        isMember = true;
+        isEditor = boardMembership.role === BoardMembershipRoles.EDITOR;
+      }
 
-    return {
-      withSubscribe: isMember, // TODO: rename?
-      withCustomFieldGroups: isEditor,
-      withTrashEmptier: board.context === BoardContexts.TRASH && (isManager || isEditor),
-    };
-  }, shallowEqual);
+      return {
+        withSubscribe: isMember, // TODO: rename?
+        withCustomFieldGroups: isEditor,
+        withTrashEmptier: board.context === BoardContexts.TRASH && (isManager || isEditor),
+        withExport: isManager || isMember,
+        withImport: isManager || isEditor,
+      };
+    }, shallowEqual);
 
   const dispatch = useDispatch();
   const [t] = useTranslation();
@@ -78,6 +81,19 @@ const ActionsStep = React.memo(({ onClose }) => {
     dispatch(entryActions.clearTrashListInCurrentBoard());
     onClose();
   }, [onClose, dispatch]);
+
+  const handleExportClick = useCallback(() => {
+    dispatch(entryActions.exportCurrentBoard());
+    onClose();
+  }, [onClose, dispatch]);
+
+  const handleImportSelect = useCallback(
+    (file) => {
+      dispatch(entryActions.importIntoBoard(board.id, file));
+      onClose();
+    },
+    [onClose, board.id, dispatch],
+  );
 
   const handleCustomFieldsClick = useCallback(() => {
     openStep(StepTypes.CUSTOM_FIELD_GROUPS);
@@ -139,6 +155,29 @@ const ActionsStep = React.memo(({ onClose }) => {
               context: 'title',
             })}
           </Menu.Item>
+          {(withExport || withImport) && (
+            <>
+              <hr className={styles.divider} />
+              {withExport && (
+                <Menu.Item className={styles.menuItem} onClick={handleExportClick}>
+                  <Icon name="download" className={styles.menuItemIcon} />
+                  {t('action.exportBoard', {
+                    context: 'title',
+                  })}
+                </Menu.Item>
+              )}
+              {withImport && (
+                <FilePicker accept=".zip" onSelect={handleImportSelect}>
+                  <Menu.Item className={styles.menuItem}>
+                    <Icon name="upload" className={styles.menuItemIcon} />
+                    {t('action.importBoard', {
+                      context: 'title',
+                    })}
+                  </Menu.Item>
+                </FilePicker>
+              )}
+            </>
+          )}
           {withTrashEmptier && (
             <>
               <hr className={styles.divider} />
