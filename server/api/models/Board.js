@@ -163,10 +163,10 @@ module.exports = {
       defaultsTo: false,
       columnName: 'add_card_to_top',
     },
-    keepOpenAfterCardCreate: {
+    closeAfterCardCreate: {
       type: 'boolean',
-      defaultsTo: true,
-      columnName: 'keep_open_after_card_create',
+      defaultsTo: false,
+      columnName: 'close_after_card_create',
     },
     autoCloseLabelSelectorAfterSelection: {
       type: 'boolean',

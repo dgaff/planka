@@ -77,9 +77,9 @@ const Others = React.memo(() => {
       />
       <Radio
         toggle
-        name="keepOpenAfterCardCreate"
-        checked={board.keepOpenAfterCardCreate}
-        label={t('common.keepOpenAfterCardCreate')}
+        name="closeAfterCardCreate"
+        checked={board.closeAfterCardCreate}
+        label={t('common.closeAfterCardCreate')}
         className={styles.radio}
         onChange={handleChange}
       />

@@ -140,7 +140,7 @@ module.exports = {
     addCardToTop: {
       type: 'boolean',
     },
-    keepOpenAfterCardCreate: {
+    closeAfterCardCreate: {
       type: 'boolean',
     },
     autoCloseLabelSelectorAfterSelection: {
@@ -190,7 +190,7 @@ module.exports = {
         'expandTaskListsByDefault',
         'displayLabelPlaceholder',
         'addCardToTop',
-        'keepOpenAfterCardCreate',
+        'closeAfterCardCreate',
         'autoCloseLabelSelectorAfterSelection',
         'showAddCardButtonAtTop',
       );
@@ -214,7 +214,7 @@ module.exports = {
       'expandTaskListsByDefault',
       'displayLabelPlaceholder',
       'addCardToTop',
-      'keepOpenAfterCardCreate',
+      'closeAfterCardCreate',
       'autoCloseLabelSelectorAfterSelection',
       'showAddCardButtonAtTop',
       'isSubscribed',

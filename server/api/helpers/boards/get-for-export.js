@@ -15,7 +15,7 @@ const BOARD_SETTING_KEYS = [
   'expandTaskListsByDefault',
   'displayLabelPlaceholder',
   'addCardToTop',
-  'keepOpenAfterCardCreate',
+  'closeAfterCardCreate',
   'autoCloseLabelSelectorAfterSelection',
   'showAddCardButtonAtTop',
 ];

@@ -14,7 +14,7 @@ I forked Planka to add several customizations. Each of the following is controll
 
 These are the additional preferences.
 
-<img src="assets/newpreferences.png" height="250px" alt="Label placeholder">
+<img src="assets/newpreferences.png" width="600px" alt="Label placeholder">
 
 And this is what the label placeholder and add a card button look like.
 

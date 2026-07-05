@@ -35,7 +35,7 @@ export default class extends BaseModel {
     expandTaskListsByDefault: attr(),
     displayLabelPlaceholder: attr(),
     addCardToTop: attr(),
-    keepOpenAfterCardCreate: attr(),
+    closeAfterCardCreate: attr(),
     autoCloseLabelSelectorAfterSelection: attr(),
     showAddCardButtonAtTop: attr(),
     context: attr(),

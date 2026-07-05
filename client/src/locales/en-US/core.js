@@ -38,7 +38,7 @@ export default {
       addCardToTop: 'Always add new cards to top of list',
       showAddCardButtonAtTop: 'Show add card button at top of list',
       autoCloseLabelSelectorAfterSelection: 'Auto-close label selector after selecting a label',
-      keepOpenAfterCardCreate: 'Keep card form open after adding a card',
+      closeAfterCardCreate: 'Close card form after adding a card',
       alwaysDisplayCardCreator: 'Always display card creator',
       apiKeyCreated_title: 'API Key Created',
       apiKey_title: 'API Key',
