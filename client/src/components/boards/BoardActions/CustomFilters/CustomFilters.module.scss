@@ -34,5 +34,12 @@
     gap: 6px;
     min-width: 0;
     vertical-align: middle;
+
+    // On narrow screens the filter groups wrap onto their own rows. The chips
+    // render their colored background flush to the left edge, unlike the other
+    // groups (whose title/search have a built-in inset), so add a matching one.
+    @media only screen and (width < 768px) {
+      margin-left: 12px;
+    }
   }
 }
