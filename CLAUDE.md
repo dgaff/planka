@@ -19,6 +19,37 @@ Each new board setting is added via a knex migration in [server/db/migrations/](
 Board models, and consumed in the relevant client component. Custom label/list colors live in
 [client/src/constants/LabelColors.js](client/src/constants/LabelColors.js) and `ListColors.js`.
 
+### Board background gradients
+
+The background behind a board is a *project*-level gradient. Adding one means touching four places,
+which must stay in sync or the API rejects the value:
+
+- [client/src/constants/BackgroundGradients.js](client/src/constants/BackgroundGradients.js) — the
+  name, which sets picker order
+- [client/src/styles.module.scss](client/src/styles.module.scss) — a `.background<PascalCase>` rule
+  in the `:global(#app)` block (the class name is derived at runtime via
+  `` globalStyles[`background${upperFirst(camelCase(name))}`] ``)
+- [server/api/models/Project.js](server/api/models/Project.js) — the `BACKGROUND_GRADIENTS` `isIn`
+  allowlist, plus the `@swagger` enum above it
+- [server/api/controllers/projects/update.js](server/api/controllers/projects/update.js) — its
+  `@swagger` enum
+
+The fork adds three grayscale gradients (`graphite`, `slate-ink`, `carbon`) because the stock set is
+all saturated color.
+
+**Why there is no light/VS Code-style background yet.** The board header has no background of its
+own — it is a `rgba(0, 0, 0, 0.24)` scrim laid over the project background with **white** text
+([Header.module.scss](client/src/components/common/Header/Header.module.scss)). So the header's
+effective background is the gradient darkened by 24%, and any gradient lighter than roughly `#909090`
+drops the white header text below 4.5:1 contrast. The three added gradients all sit above that floor,
+so they are pure additions. Three lighter candidates were designed but deferred — `editor-paper`
+(`#f3f3f3 → #e6e6e6`), `quiet-slate` (`#dcdfe3 → #c3c8ce`), `warm-concrete` (`#dedbd6 → #c6c2ba`).
+Shipping any of them requires the header to switch to dark text when a light background is active:
+the sketched approach is a `lightBackground` class set on the app root by
+[ProjectBackground.jsx](client/src/components/projects/ProjectBackground/ProjectBackground.jsx) for
+those gradient names, with `Header.module.scss` overriding its text color under it. Note that at
+`editor-paper`'s lightness the lists (`#dfe3e6`) nearly dissolve into the background.
+
 ## Repo layout
 
 Monorepo with two independent npm packages plus a root orchestrator:

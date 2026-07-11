@@ -4,6 +4,9 @@
  */
 
 export default [
+  'graphite', // Doug custom
+  'slate-ink', // Doug custom
+  'carbon', // Doug custom
   'old-lime',
   'ocean-dive',
   'tzepesch-style',
