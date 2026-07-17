@@ -5,6 +5,7 @@
 
 import React, { useCallback } from 'react';
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router';
 import { Button, Icon, Menu } from 'semantic-ui-react';
@@ -72,6 +73,7 @@ const Header = React.memo(() => {
   }, shallowEqual);
 
   const dispatch = useDispatch();
+  const [t] = useTranslation();
 
   const handleToggleFavoritesClick = useCallback(() => {
     dispatch(entryActions.toggleFavorites(!isFavoritesEnabled));
@@ -80,6 +82,10 @@ const Header = React.memo(() => {
   const handleToggleEditModeClick = useCallback(() => {
     dispatch(entryActions.toggleEditMode(!isEditModeEnabled));
   }, [isEditModeEnabled, dispatch]);
+
+  const handleToggleBoardSelectorClick = useCallback(() => {
+    dispatch(entryActions.updateCurrentUser({ hideBoardSelector: !user.hideBoardSelector }));
+  }, [user.hideBoardSelector, dispatch]);
 
   const handleProjectSettingsClick = useCallback(() => {
     if (!canEditProject) {
@@ -130,6 +136,17 @@ const Header = React.memo(() => {
                 name={isFavoritesEnabled ? 'star' : 'star outline'}
                 className={classNames(isFavoritesEnabled && styles.itemIconEnabled)}
               />
+            </Menu.Item>
+          )}
+          {project && (
+            <Menu.Item
+              title={t(
+                user.hideBoardSelector ? 'common.showBoardSelector' : 'common.hideBoardSelector',
+              )}
+              className={classNames(styles.item, styles.itemHoverable)}
+              onClick={handleToggleBoardSelectorClick}
+            >
+              <Icon fitted name={user.hideBoardSelector ? 'angle down' : 'angle up'} />
             </Menu.Item>
           )}
           {withEditModeToggler && (

@@ -142,6 +142,11 @@
  *           default: byDefault
  *           description: Default sort order for projects display (personal field)
  *           example: byDefault
+ *         hideBoardSelector:
+ *           type: boolean
+ *           default: false
+ *           description: Whether the board selector bar is collapsed (personal field)
+ *           example: false
  *         isSsoUser:
  *           type: boolean
  *           default: false
@@ -249,6 +254,7 @@ const PERSONAL_FIELD_NAMES = [
   'defaultEditorMode',
   'defaultHomeView',
   'defaultProjectsOrder',
+  'hideBoardSelector',
 ];
 
 const INTERNAL = {
@@ -371,6 +377,11 @@ module.exports = {
       isIn: Object.values(ProjectOrders),
       defaultsTo: ProjectOrders.BY_DEFAULT,
       columnName: 'default_projects_order',
+    },
+    hideBoardSelector: {
+      type: 'boolean',
+      defaultsTo: false,
+      columnName: 'hide_board_selector',
     },
     termsSignature: {
       type: 'string',

@@ -8,7 +8,6 @@ import { useSelector } from 'react-redux';
 
 import selectors from '../../../selectors';
 import Header from '../Header';
-import PromoBanner from '../PromoBanner/PromoBanner';
 import Favorites from '../Favorites';
 import HomeActions from '../HomeActions';
 import Project from '../../projects/Project';
@@ -45,7 +44,6 @@ const Fixed = React.memo(() => {
   return (
     <div ref={wrapperRef} className={styles.wrapper}>
       <Header />
-      <PromoBanner />
       <Favorites />
       {projectId === undefined && <HomeActions />}
       {projectId && <Project />}

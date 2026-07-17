@@ -205,6 +205,9 @@ module.exports = {
       type: 'string',
       isIn: Object.values(User.ProjectOrders),
     },
+    hideBoardSelector: {
+      type: 'boolean',
+    },
     isSsoUser: {
       type: 'boolean',
       custom: is(false),
@@ -283,6 +286,7 @@ module.exports = {
         'defaultEditorMode',
         'defaultHomeView',
         'defaultProjectsOrder',
+        'hideBoardSelector',
         'isSsoUser',
         'isDeactivated',
       ]),

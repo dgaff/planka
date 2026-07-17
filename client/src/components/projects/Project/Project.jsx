@@ -16,6 +16,9 @@ import styles from './Project.module.scss';
 
 const Project = React.memo(() => {
   const modal = useSelector(selectors.selectCurrentModal);
+  const isBoardSelectorHidden = useSelector(
+    (state) => selectors.selectCurrentUser(state).hideBoardSelector,
+  );
 
   let modalNode = null;
   if (modal) {
@@ -34,9 +37,11 @@ const Project = React.memo(() => {
 
   return (
     <>
-      <div className={styles.wrapper}>
-        <Boards />
-      </div>
+      {!isBoardSelectorHidden && (
+        <div className={styles.wrapper}>
+          <Boards />
+        </div>
+      )}
       {modalNode}
     </>
   );
