@@ -201,7 +201,11 @@
     border-radius: 3px;
     display: flex;
     flex-direction: column;
-    max-height: calc(100vh - 198px);
+    // Offset tracks the real fixed-header height (set live by Fixed.jsx) so the
+    // list still fills the canvas when the board selector band is collapsed. The
+    // fallback matches the static board layout for the pre-mount frame; the 24px
+    // is the bottom gap beyond the header (see Static.module.scss margin-tops).
+    max-height: calc(100vh - var(--fixed-height, 174px) - 24px);
     overflow: hidden;
   }
 
@@ -216,6 +220,6 @@
   }
 
   .outerWrapperWithFavorites {
-    max-height: calc(100vh - 288px);
+    max-height: calc(100vh - var(--fixed-height, 264px) - 24px);
   }
 }
