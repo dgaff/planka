@@ -28,6 +28,10 @@ And I added Board Export and Board Import. Export includes the Custom Filters fe
 
 <img src="assets/board-import-export.png" width="300px" alt = "Board Import / Export">
 
+Finally, I added the ability to collapse the board selector bar for better screen usage on small laptop screens. See the little chevron on the right side:
+
+<img src="assets/collapseprojectbar.png" alt="Collapse project bar">
+
 ## Key Features
 
 - **Collaborative Kanban Boards:** Create projects, boards, lists, cards, and manage tasks with an intuitive drag-and-drop interface
