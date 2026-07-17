@@ -12,7 +12,7 @@
   .message {
     align-content: space-between;
     align-items: center;
-    color: #fff;
+    color: var(--chrome-fg);
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;
@@ -74,5 +74,14 @@
 
   .wrapperWithFavorites {
     margin-top: var(--fixed-height, calc(206px + var(--promo-banner-height, 0px)));
+  }
+}
+
+// The placeholder icon uses Semantic's `inverted` prop (hardcoded white); the
+// `#app` id here outranks it so the icon follows the chrome ink over light
+// backgrounds. The message text already flips via var(--chrome-fg) above.
+:global(#app.light-background) {
+  .messageIcon {
+    color: var(--chrome-fg);
   }
 }

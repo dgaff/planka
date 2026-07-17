@@ -9,10 +9,10 @@
   }
 
   .button {
-    background: rgba(0, 0, 0, 0.24);
+    background: var(--chrome-control-bg);
     border: none;
     border-radius: 3px;
-    color: #fff;
+    color: var(--chrome-fg);
     cursor: pointer;
     display: inline-block;
     font-size: 13px;
@@ -21,7 +21,7 @@
     padding: 5px 12px;
 
     &:hover {
-      background: rgba(0, 0, 0, 0.32);
+      background: var(--chrome-control-bg-hover);
     }
   }
 
@@ -30,12 +30,12 @@
       border-radius: 0;
 
       &:enabled {
-        background: rgba(0, 0, 0, 0.08);
-        color: rgba(255, 255, 255, 0.72);
+        background: var(--chrome-control-bg-subtle);
+        color: var(--chrome-fg-muted);
 
         &:hover {
-          background: rgba(0, 0, 0, 0.12);
-          color: #fff;
+          background: var(--chrome-control-bg-subtle-hover);
+          color: var(--chrome-fg);
         }
       }
 

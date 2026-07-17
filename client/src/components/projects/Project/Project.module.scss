@@ -4,6 +4,9 @@
  */
 
 :global(#app) {
+  // The board-tabs band sits one step lighter than the header (0.16 vs 0.24) over
+  // the project gradient, in every theme. Under a light background this is the
+  // middle step of the header → board-tabs → canvas gradation.
   .wrapper {
     background: rgba(0, 0, 0, 0.16);
     display: flex;

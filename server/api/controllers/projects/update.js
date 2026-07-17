@@ -56,7 +56,7 @@
  *                 example: gradient
  *               backgroundGradient:
  *                 type: string
- *                 enum: [graphite, slate-ink, carbon, old-lime, ocean-dive, tzepesch-style, jungle-mesh, strawberry-dust, purple-rose, sun-scream, warm-rust, sky-change, green-eyes, blue-xchange, blood-orange, sour-peel, green-ninja, algae-green, coral-reef, steel-grey, heat-waves, velvet-lounge, purple-rain, blue-steel, blueish-curve, prism-light, green-mist, red-curtain]
+ *                 enum: [graphite, slate-ink, carbon, editor-paper, quiet-slate, warm-concrete, old-lime, ocean-dive, tzepesch-style, jungle-mesh, strawberry-dust, purple-rose, sun-scream, warm-rust, sky-change, green-eyes, blue-xchange, blood-orange, sour-peel, green-ninja, algae-green, coral-reef, steel-grey, heat-waves, velvet-lounge, purple-rain, blue-steel, blueish-curve, prism-light, green-mist, red-curtain]
  *                 nullable: true
  *                 description: Gradient background for the project
  *                 example: ocean-dive

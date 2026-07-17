@@ -34,21 +34,45 @@ which must stay in sync or the API rejects the value:
 - [server/api/controllers/projects/update.js](server/api/controllers/projects/update.js) — its
   `@swagger` enum
 
-The fork adds three grayscale gradients (`graphite`, `slate-ink`, `carbon`) because the stock set is
-all saturated color.
+The fork adds three grayscale gradients (`graphite`, `slate-ink`, `carbon`) plus three light,
+VS Code-style gradients (`editor-paper` `#f3f3f3 → #e6e6e6`, `quiet-slate` `#dcdfe3 → #c3c8ce`,
+`warm-concrete` `#dedbd6 → #c6c2ba`) because the stock set is all saturated color.
 
-**Why there is no light/VS Code-style background yet.** The board header has no background of its
-own — it is a `rgba(0, 0, 0, 0.24)` scrim laid over the project background with **white** text
-([Header.module.scss](client/src/components/common/Header/Header.module.scss)). So the header's
-effective background is the gradient darkened by 24%, and any gradient lighter than roughly `#909090`
-drops the white header text below 4.5:1 contrast. The three added gradients all sit above that floor,
-so they are pure additions. Three lighter candidates were designed but deferred — `editor-paper`
-(`#f3f3f3 → #e6e6e6`), `quiet-slate` (`#dcdfe3 → #c3c8ce`), `warm-concrete` (`#dedbd6 → #c6c2ba`).
-Shipping any of them requires the header to switch to dark text when a light background is active:
-the sketched approach is a `lightBackground` class set on the app root by
-[ProjectBackground.jsx](client/src/components/projects/ProjectBackground/ProjectBackground.jsx) for
-those gradient names, with `Header.module.scss` overriding its text color under it. Note that at
-`editor-paper`'s lightness the lists (`#dfe3e6`) nearly dissolve into the background.
+**How the light backgrounds work (full light theme via chrome tokens).** The board chrome (header,
+board tabs, and the BoardActions filter bar) normally renders **white** text on translucent-black
+controls, which any gradient lighter than roughly `#909090` washes out. Instead of hardcoding those
+colors, the chrome now reads a small set of **CSS custom properties** defined on `#app` in
+[styles.module.scss](client/src/styles.module.scss): `--chrome-fg`, `--chrome-fg-muted`,
+`--chrome-control-bg{,-hover,-subtle,-subtle-hover}`, and `--chrome-hover-veil`. Their defaults are
+the stock dark-theme values (white ink / black controls).
+
+When a light gradient is active, [ProjectBackground.jsx](client/src/components/projects/ProjectBackground/ProjectBackground.jsx)
+toggles a `light-background` class on the `#app` root (light names live in `LIGHT_BACKGROUND_GRADIENTS`
+in [BackgroundGradients.js](client/src/constants/BackgroundGradients.js)). A single
+`#app.light-background` block in `styles.module.scss` flips every token to dark ink (`#17394d`) on
+translucent-`rgba(9,30,66,·)` controls — so the whole chrome re-themes from one place. On top of the
+tokens, three things need per-file handling:
+
+- **Band scrims** — the header (`rgba(0,0,0,0.24)`) and the board-tabs / Favorites bands
+  (`rgba(0,0,0,0.16)`) keep their stock scrims in *every* theme, including light. Because the chrome
+  ink is now dark, these read as a graduated header → board-tabs → canvas step (darkest → lightest)
+  rather than washing out white text, matching how the darker gray gradients look. (An interim version
+  forced these bands `transparent` under `.light-background`; that was only needed while the chrome
+  text was still white and has been removed.) BoardActions (the filter bar) has no scrim, so it sits
+  at canvas level — the lightest step.
+- **Semantic-UI `inverted`** — the header `<Menu inverted>` and the Static placeholder `<Icon inverted>`
+  hardcode white via Semantic's own selectors. The fork beats them on specificity: the module rules
+  compile to `#app .item` / `#app.light-background .messageIcon` (an id), which outranks Semantic's
+  class-only selectors, letting the tokens win.
+- **List border** — lists (`#dfe3e6`) are nearly the same grey as these gradients, so
+  `List.module.scss` gives `.outerWrapper` a `1px rgba(0,0,0,0.12)` border under `.light-background`.
+
+Colored elements stay as-is in both themes (the red notification badge, custom-filter color chips,
+the lime "enabled" icon accent) — white-on-color is correct regardless of theme. Adding another light
+gradient means the four background-file edits above **plus** adding its name to
+`LIGHT_BACKGROUND_GRADIENTS`; the chrome re-themes automatically. Scope note: the home-screen filter
+bar (HomeActions) and the promo banner were intentionally left dark — the home screen never has a
+project background, so `.light-background` is never set there anyway.
 
 ## Repo layout
 

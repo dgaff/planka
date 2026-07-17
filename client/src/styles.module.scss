@@ -8,6 +8,29 @@
     background: #22252a;
     overflow-x: auto;
 
+    // Board-chrome theming tokens. Defaults are the stock dark-on-gradient values
+    // (white text over translucent-black controls). When a light project background
+    // is active, ProjectBackground sets `.light-background` on this root and the
+    // overrides below flip the whole chrome to dark ink on translucent controls.
+    // The chrome components consume these via var() instead of hardcoding #fff.
+    --chrome-fg: #fff;
+    --chrome-fg-muted: rgba(255, 255, 255, 0.72);
+    --chrome-control-bg: rgba(0, 0, 0, 0.24);
+    --chrome-control-bg-hover: rgba(0, 0, 0, 0.32);
+    --chrome-control-bg-subtle: rgba(0, 0, 0, 0.08);
+    --chrome-control-bg-subtle-hover: rgba(0, 0, 0, 0.12);
+    --chrome-hover-veil: rgba(255, 255, 255, 0.08);
+
+    &.light-background {
+      --chrome-fg: #17394d;
+      --chrome-fg-muted: rgba(23, 57, 77, 0.66);
+      --chrome-control-bg: rgba(9, 30, 66, 0.08);
+      --chrome-control-bg-hover: rgba(9, 30, 66, 0.16);
+      --chrome-control-bg-subtle: rgba(9, 30, 66, 0.05);
+      --chrome-control-bg-subtle-hover: rgba(9, 30, 66, 0.1);
+      --chrome-hover-veil: rgba(9, 30, 66, 0.06);
+    }
+
     &::-webkit-scrollbar {
       height: auto;
     }
@@ -804,6 +827,18 @@
 
   .backgroundCarbon {
     background: linear-gradient(160deg, #45494d, #26282b) !important;
+  }
+
+  .backgroundEditorPaper {
+    background: linear-gradient(160deg, #f3f3f3, #e6e6e6) !important;
+  }
+
+  .backgroundQuietSlate {
+    background: linear-gradient(160deg, #dcdfe3, #c3c8ce) !important;
+  }
+
+  .backgroundWarmConcrete {
+    background: linear-gradient(160deg, #dedbd6, #c6c2ba) !important;
   }
 
   /* Colors */

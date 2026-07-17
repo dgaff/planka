@@ -6,12 +6,12 @@
 :global(#app) {
   .addButton {
     background: transparent;
-    color: #fff;
+    color: var(--chrome-fg);
     margin-right: 0;
     vertical-align: top;
 
     &:hover {
-      background: rgba(34, 36, 38, 0.3);
+      background: var(--chrome-control-bg-hover);
     }
   }
 

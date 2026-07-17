@@ -205,6 +205,12 @@
     overflow: hidden;
   }
 
+  // Lists share a near-identical grey with the light project backgrounds, so give
+  // them a border to stay distinct. See ProjectBackground for `.light-background`.
+  &:global(.light-background) .outerWrapper {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+  }
+
   .outerWrapperTransitioning {
     transition: max-height 0.2s ease;
   }

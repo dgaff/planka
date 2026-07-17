@@ -31,16 +31,16 @@
   }
 
   .filterLabel {
-    background: rgba(0, 0, 0, 0.24);
+    background: var(--chrome-control-bg);
     border-radius: 3px;
-    color: #fff;
+    color: var(--chrome-fg);
     display: inline-block;
     font-size: 12px;
     line-height: 20px;
     padding: 2px 8px;
 
     &:hover {
-      background: rgba(0, 0, 0, 0.32);
+      background: var(--chrome-control-bg-hover);
     }
   }
 
@@ -50,7 +50,7 @@
 
   .filterTitle {
     border-radius: 3px;
-    color: #fff;
+    color: var(--chrome-fg);
     display: inline-block;
     font-size: 12px;
     line-height: 20px;
@@ -73,18 +73,18 @@
   }
 
   .searchInactive {
-    color: #fff;
+    color: var(--chrome-fg);
     height: 24px;
     width: 220px;
 
     input {
-      background: rgba(0, 0, 0, 0.24);
+      background: var(--chrome-control-bg);
       border: none;
-      color: #fff !important;
+      color: var(--chrome-fg) !important;
       font-size: 12px;
 
       &::placeholder {
-        color: #fff;
+        color: var(--chrome-fg-muted);
       }
     }
   }

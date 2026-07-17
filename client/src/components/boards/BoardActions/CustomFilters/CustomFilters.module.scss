@@ -12,10 +12,10 @@
   }
 
   .manageButton {
-    background: rgba(0, 0, 0, 0.24);
+    background: var(--chrome-control-bg);
     border: none;
     border-radius: 3px;
-    color: #fff;
+    color: var(--chrome-fg);
     cursor: pointer;
     flex: 0 0 auto;
     line-height: 20px;
@@ -23,7 +23,7 @@
     padding: 2px 8px;
 
     &:hover {
-      background: rgba(0, 0, 0, 0.32);
+      background: var(--chrome-control-bg-hover);
     }
   }
 

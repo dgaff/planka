@@ -42,9 +42,9 @@
   }
 
   .contextTitle {
-    background: rgba(0, 0, 0, 0.08);
+    background: var(--chrome-control-bg-subtle);
     border-radius: 3px;
-    color: #fff;
+    color: var(--chrome-fg);
     line-height: 34px;
     padding: 2px 14px;
   }
