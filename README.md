@@ -2,6 +2,8 @@
 
 ![Demo](https://raw.githubusercontent.com/plankanban/planka/master/assets/demo.gif)
 
+<a href="https://www.buymeacoffee.com/douggaff" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me a Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
 ## Doug's Fork
 
 I forked Planka to add several customizations. Each of the following is controlled by a board-level preference setting that can be enabled for custom behavior or disabled for standard Planka behavior.
